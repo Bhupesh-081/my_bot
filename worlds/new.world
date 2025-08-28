@@ -160,7 +160,21 @@
             </script>
           </material>
         </visual>
-        <visual name='base_link_fixed_joint_lump__laser_frame_visual_1'>
+        <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+          <pose>0.205 0 0.08 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.03 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Red</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='base_link_fixed_joint_lump__laser_frame_visual_2'>
           <pose>0 0 0.175 0 -0 0</pose>
           <geometry>
             <cylinder>
@@ -175,6 +189,26 @@
             </script>
           </material>
         </visual>
+        <sensor name='camera' type='camera'>
+          <visualize>1</visualize>
+          <update_rate>10</update_rate>
+          <camera>
+            <horizontal_fov>1.089</horizontal_fov>
+            <image>
+              <format>R8G8B8</format>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.05</near>
+              <far>8</far>
+            </clip>
+          </camera>
+          <plugin name='camera_controller' filename='libgazebo_ros_camera.so'>
+            <frame_name>camera_link_optical</frame_name>
+          </plugin>
+          <pose>0.205 0 0.08 0 -0 0</pose>
+        </sensor>
         <sensor name='laser' type='ray'>
           <visualize>1</visualize>
           <update_rate>10</update_rate>
@@ -540,7 +574,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>2.70551 0.34293 0 0 -0 0</pose>
+      <pose>1.58212 0.06909 0 0 -0 0</pose>
     </model>
     <model name='warehouse_robot_0'>
       <static>1</static>
@@ -642,7 +676,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>0.303336 -1.55218 0 0 -0 0</pose>
+      <pose>0.981566 3.08569 0 0 -0 0</pose>
     </model>
     <model name='warehouse_robot_1'>
       <static>1</static>
@@ -744,181 +778,13 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>-1.01219 1.88253 0 0 -0 0</pose>
-    </model>
-    <light name='sun' type='directional'>
-      <cast_shadows>1</cast_shadows>
-      <pose>-2.84032 1.16726 10 0 -0 0</pose>
-      <diffuse>0.8 0.8 0.8 1</diffuse>
-      <specular>0.2 0.2 0.2 1</specular>
-      <attenuation>
-        <range>1000</range>
-        <constant>0.9</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <direction>-0.5 0.1 -0.9</direction>
-    </light>
-    <model name='Stop Sign'>
-      <static>1</static>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://stop_sign/meshes/stop_sign.dae</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://stop_sign/materials/scripts</uri>
-              <uri>model://stop_sign/materials/textures</uri>
-              <name>StopSign/Diffuse</name>
-            </script>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>2.73791 -1.45592 0 0 -0 0</pose>
-    </model>
-    <model name='warehouse_robot_2'>
-      <static>1</static>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://warehouse_robot/meshes/robot.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <collision name='collision_base'>
-          <pose>0 0 0.20437 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.55508 1.0228 0.40874</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='collision_bumper'>
-          <pose>0 0 0.062205 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.67266 1.17126 0.12441</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='collision_column_large'>
-          <pose>0 -0.27539 0.43738 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.08652</radius>
-              <length>0.87476</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='collision_column_small'>
-          <pose>0 -0.27539 0.70424 0 -0 0</pose>
-          <geometry>
-            <cylinder>
-              <radius>0.04261</radius>
-              <length>1.40848</length>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-2.21482 0.532782 0 0 -0 0</pose>
+      <pose>-0.750015 -2.24989 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1088 659000000</sim_time>
-      <real_time>1090 436801096</real_time>
-      <wall_time>1756364039 692323292</wall_time>
-      <iterations>1088659</iterations>
-      <model name='Stop Sign'>
-        <pose>2.73791 -1.45592 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>2.73791 -1.45592 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
+      <sim_time>53 43000000</sim_time>
+      <real_time>53 877651872</real_time>
+      <wall_time>1756365768 338491904</wall_time>
+      <iterations>53043</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -930,68 +796,58 @@
         </link>
       </model>
       <model name='my_bot'>
-        <pose>0.068117 5.7e-05 0.05 0 3e-06 -0.001108</pose>
+        <pose>0.004523 0 0.05 0 1.5e-05 -6.1e-05</pose>
         <scale>1 1 1</scale>
         <link name='base_link'>
-          <pose>0.068117 5.7e-05 0.05 0 3e-06 -0.001108</pose>
-          <velocity>0.000137 -1.3e-05 5.1e-05 -8.2e-05 -0.011408 1.1e-05</velocity>
-          <acceleration>-1.98737 -0.009912 1.05215 2.97793 0.825486 -3.11847</acceleration>
-          <wrench>-1.19242 -0.005947 0.631288 0 -0 0</wrench>
+          <pose>0.004523 0 0.05 0 1.5e-05 -6.1e-05</pose>
+          <velocity>3.3e-05 1.3e-05 -5.1e-05 7.1e-05 0.011408 -1.4e-05</velocity>
+          <acceleration>1.98736 0.011709 -1.05215 -3.00061 -0.825649 3.11727</acceleration>
+          <wrench>1.19242 0.007025 -0.631288 0 -0 0</wrench>
         </link>
         <link name='caster_wheel'>
-          <pose>0.208117 -9.8e-05 0.05 0.185643 3e-06 -0.001108</pose>
-          <velocity>0.00012 -1.1e-05 0.001693 0.000228 -0.011397 1.1e-05</velocity>
-          <acceleration>0.069949 -0.022497 3.38686 3.11634 0.801797 -3.11736</acceleration>
-          <wrench>0.006995 -0.00225 0.338685 0 -0 0</wrench>
+          <pose>0.144523 -8e-06 0.049998 0.011543 1.5e-05 -6.1e-05</pose>
+          <velocity>5e-05 1.1e-05 -0.001693 0.000225 0.011396 -1.3e-05</velocity>
+          <acceleration>-0.069972 0.022159 -3.38685 -3.14021 -0.801805 3.11748</acceleration>
+          <wrench>-0.006997 0.002216 -0.338685 0 -0 0</wrench>
         </link>
         <link name='left_wheel'>
-          <pose>0.06831 0.175057 0.05 -1.57082 1.33357 -0.001128</pose>
-          <velocity>-5.2e-05 1.4e-05 4e-06 -0.000293 -0.00314 0.004745</velocity>
-          <acceleration>-0.273817 0.027967 0.008481 -0.585123 0.455977 3.08176</acceleration>
-          <wrench>-0.027382 0.002797 0.000848 0 -0 0</wrench>
+          <pose>0.004533 0.175 0.05 -1.5708 0.088006 -5.8e-05</pose>
+          <velocity>0.000222 -1.4e-05 -4e-06 0.000292 0.006466 -0.004748</velocity>
+          <acceleration>0.273829 -0.027889 -0.008435 0.582697 -0.455552 -3.08192</acceleration>
+          <wrench>0.027383 -0.002789 -0.000843 0 -0 0</wrench>
         </link>
         <link name='right_wheel'>
-          <pose>0.067923 -0.174943 0.05 1.57082 1.32468 -0.001093</pose>
-          <velocity>-5.4e-05 -1.9e-05 3e-06 0.000386 -0.003232 -0.00486</velocity>
-          <acceleration>-0.277435 -0.037562 0.006786 0.773059 0.356723 2.83127</acceleration>
-          <wrench>-0.027744 -0.003756 0.000679 0 -0 0</wrench>
+          <pose>0.004512 -0.175 0.05 1.5708 0.08746 -6.3e-05</pose>
+          <velocity>0.000223 1.9e-05 -3e-06 -0.000388 0.006536 0.004857</velocity>
+          <acceleration>0.277413 0.037643 -0.006833 -0.775495 -0.357342 -2.83144</acceleration>
+          <wrench>0.027741 0.003764 -0.000683 0 -0 0</wrench>
         </link>
       </model>
       <model name='warehouse_robot'>
-        <pose>2.70551 0.34293 0 0 -0 0</pose>
+        <pose>1.58212 0.06909 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>2.70551 0.34293 0 0 -0 0</pose>
+          <pose>1.58212 0.06909 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='warehouse_robot_0'>
-        <pose>0.303336 -1.55218 0 0 -0 0</pose>
+        <pose>0.981566 3.08569 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>0.303336 -1.55218 0 0 -0 0</pose>
+          <pose>0.981566 3.08569 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='warehouse_robot_1'>
-        <pose>-1.01219 1.88253 0 0 -0 0</pose>
+        <pose>-0.750015 -2.24989 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-1.01219 1.88253 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='warehouse_robot_2'>
-        <pose>-2.21482 0.532782 0 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose>-2.21482 0.532782 0 0 -0 0</pose>
+          <pose>-0.750015 -2.24989 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -1003,7 +859,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>6.89517 -5.07648 2.45891 0 0.275643 2.35619</pose>
+        <pose>-6.36468 -4.11394 2.20493 0 0.103643 0.424198</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
